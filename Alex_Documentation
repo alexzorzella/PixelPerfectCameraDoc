@@ -1,0 +1,18 @@
+Pixel-Perfect Camera Component in Unity
+
+The Pixel Perfect Camera (component) is a Unity feature which was recently added to the default 2D Unity project. The best use of the component is for “upscaling render textures” which just means that the camera will render the scene as if it is being displayed on a limited pixel count screen. This means that sprites will be rotated correctly, and will snap according to the settings you chose on the camera.
+
+How to operate:
+
+First, you have to make sure that you started your unity project in the 2D setting. This will automatically import the camera. If it is not automatically imported, you can click Window > Package Manager > Use Preview Packages :: Search: Pixel Perfect Camera.
+
+Now that you have the pixel perfect camera imported and ready to go, you need to prepare your sprites. Before you even export the sprites to a png (spritesheet or individual sprites), you need to export them with 100% scale. This is usually called “scale factor” or “resize” in the image exporting window. If you now open the image, it will seem blurry and ugly, but that’s just your computer enlarging it and trying to smooth it out as normal. This is fine. Drag in your sprite sheet into Unity and click on it after it finsihes importing. You now want to set your filter to “Point” and your compression to “None”. This will make the sprites crisp no matter what size they are displayed at. Next, I find that setting the pixels per unit to the dimensions of one sprite works fine. For example, if you have a character that is 64x64 pixels, set it to 64x64. Do this even if your sprite sheet displays another dimension. This is usually a multiple of your original sprite size, as the animations are tiled.
+
+This part is easy. Go into your pixel perfect camera and set pixels per unit to the pixels per unit you set for your sprites. Now enable upscale render textures and put your reference resolution to a size that is a multiple of your sprite size. This may sound confusing, but bear with me here. If your character is (again) 64x64 pixels, putting the reference resolution as such will make your camera render exactly the size your character is. You would want something like a 16:9 resolution, so doing the math, I get 1024[x] and 576[y]. You can have many different screen sizes, but here’s the deal. You want multiples of your original sprite size so [s being your sprite size] s*2 or s*3.
+
+Finally, you can watch as your character fits the screen and rotates properly (if it does in your game).
+
+Footnotes:
+
+1. Note: Let’s talk about sprites and sprite-sheets. When making a game with pixel art, you usually have to deal with a lot of frames. Sprite sheets usually help compress all the information about the character (all sprites which make the animations) into one .png which Unity can then break down. This is also useful because you have to make changes to bulk amounts of sprites when exporting as individual sprites. Try to find out more about exporting in a sprite sheet in your specific program.
+2. Let’s talk about testing out your camera! I recommend to make a square in your art program of choice (such as a 64x64 pixel square) and export it the same way as in the introduction section. Then you want to rotate it (I recommend 90 °) and see if the square is pixelated correctly.
